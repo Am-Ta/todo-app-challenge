@@ -1,0 +1,59 @@
+// Simple css reset
+* {
+    margin: 0;
+    padding: 0;
+}
+
+// Define font
+@font-face {
+    font-family: "JosefinSans";
+    src: url("./assets/font/JosefinSans-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "JosefinSans";
+    src: url("./assets/font/JosefinSans-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+// Fix the from element font
+input,
+button,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+}
+
+// Fix the clear
+html {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+}
+
+// Variables
+$primary-color: #00a4e4;
+$success-color: #00c300;
+$danger-color: #ec1c24;
+$dark-color: #231f20;
+$light-color: #d7d7d8;
+$danger-color: #ff3d00;
+$font-stack: "JosefinSans", Arial, Helvetica, sans-serif;
+
+// Set the global font and color for whole app
+body {
+    font-family: $font-stack;
+    color: $dark-color;
+}
