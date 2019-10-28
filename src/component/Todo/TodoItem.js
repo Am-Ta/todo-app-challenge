@@ -12,8 +12,24 @@ const TodoItem = ({ todo }) => {
     // Handle Click for the higest priority
     const handleClick = () => !todo.isCompleted && pinTodo(todo.id);
 
+    // get todo class
+    const getTodoClass = () => {
+        switch (todo.priority) {
+            case 0:
+                return "todo todo_complete";
+            case 1:
+                return "todo todo_little";
+            case 2:
+                return "todo todo_medium";
+            case 3:
+                return "todo todo_high";
+            case 4:
+                return "todo todo_pin";
+        }
+    };
+
     return (
-        <div className='todo__item'>
+        <div className={getTodoClass()}>
             <input
                 type='checkbox'
                 checked={todo.isCompleted}
@@ -22,7 +38,7 @@ const TodoItem = ({ todo }) => {
             />
 
             <h3 className='todo__title'>{todo.title}</h3>
-            <a href='#' onClick={handleClick}>
+            <a href='#' onClick={handleClick} className='text-link'>
                 <i className='fas fa-thumbtack'></i>
             </a>
         </div>

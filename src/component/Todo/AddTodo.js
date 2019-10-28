@@ -15,12 +15,13 @@ const AddTodo = () => {
     // Add todo
     const handleSubmit = e => {
         e.preventDefault();
-
-        addTodo(todo);
-        setTodo({ title: "", priority: "little" });
+        if (todo.title !== "") {
+            addTodo(todo);
+            setTodo({ title: "", priority: "little" });
+        }
     };
     return (
-        <div>
+        <div className='add-todo'>
             <form className='form' onSubmit={handleSubmit}>
                 <div className='form__item'>
                     <input
@@ -29,6 +30,7 @@ const AddTodo = () => {
                         className='form__input'
                         onChange={handleChange}
                         value={todo.title}
+                        placeholder='Enter a todo...'
                     />
                 </div>
 
@@ -37,6 +39,7 @@ const AddTodo = () => {
                         name='priority'
                         value={todo.priority}
                         onChange={handleChange}
+                        className='form__select'
                     >
                         <option disabled>--Please choose an priority--</option>
                         <option value='little'>Little</option>

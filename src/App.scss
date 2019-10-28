@@ -22,7 +22,8 @@
 // Fix the from element font
 input,
 button,
-textarea {
+textarea,
+select {
     font-family: inherit;
     font-size: inherit;
     outline: none;
@@ -49,11 +50,136 @@ $success-color: #00c300;
 $danger-color: #ec1c24;
 $dark-color: #231f20;
 $light-color: #d7d7d8;
-$danger-color: #ff3d00;
 $font-stack: "JosefinSans", Arial, Helvetica, sans-serif;
 
 // Set the global font and color for whole app
 body {
     font-family: $font-stack;
     color: $dark-color;
+}
+
+// Container
+.container {
+    width: 90%;
+    margin: 2em auto;
+}
+
+// Form Component
+.form {
+    display: flex;
+    flex-direction: column;
+    .form__item {
+        margin: 0.5em 0;
+        .form__input {
+            padding: 0.5em;
+            color: rgba($dark-color, 0.7);
+            border: 1px solid rgba($dark-color, 0.2);
+            width: 100%;
+            &:hover,
+            &:focus {
+                border-color: $success-color;
+            }
+        }
+        .form__select {
+            background-color: #fff;
+            border: none;
+            padding: 0.5em;
+            background-color: rgba($dark-color, 0.2);
+            option {
+                background-color: #fff;
+            }
+        }
+    }
+}
+
+// Btn Component
+.btn {
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    border-radius: 3px;
+    transition: 0.5s;
+    width: 100%;
+    &.btn_success {
+        background-color: $success-color;
+        color: #fff;
+        &:hover {
+            background-color: rgba($success-color, 0.8);
+        }
+    }
+    &.btn_primary {
+        background-color: $primary-color;
+        color: #fff;
+        &:hover {
+            background-color: rgba($primary-color, 0.8);
+        }
+    }
+    &.btn_dark {
+        background-color: $dark-color;
+        color: #fff;
+        &:hover {
+            background-color: rgba($dark-color, 0.9);
+        }
+    }
+}
+
+// Todo-item component
+.todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5em;
+    padding: 0.5em;
+    color: $dark-color;
+    &.todo_complete {
+        background-color: rgba($dark-color, 0.8);
+        color: #fff;
+    }
+    &.todo_little {
+        background-color: rgba($light-color, 0.9);
+    }
+    &.todo_medium {
+        background-color: rgba($success-color, 0.5);
+        color: #fff;
+    }
+    &.todo_high {
+        background-color: $success-color;
+        color: #fff;
+    }
+    &.todo_pin {
+        background-color: rgba($danger-color, 0.9);
+        color: #fff;
+    }
+}
+
+.text-link {
+    color: $dark-color;
+}
+
+@media screen and (min-width: 40em) {
+    .container {
+        width: 70%;
+    }
+
+    .form {
+        flex-direction: row;
+        .form__item {
+            width: 15%;
+            margin: 0.5em;
+            &:first-child {
+                flex: 3;
+            }
+            &:nth-child(2) {
+                flex: 1.5;
+            }
+            &:last-child {
+                flex: 1.5;
+            }
+            .form__select {
+                width: 100%;
+            }
+        }
+    }
 }
