@@ -1,4 +1,4 @@
-import { ADD_TODO, UPDATE_TODO, PIN_TODO } from "../types";
+import { ADD_TODO, MARK_TODO, PIN_TODO, DELETE_TODO } from "../types";
 
 export default (state, action) => {
     switch (action.type) {
@@ -7,7 +7,7 @@ export default (state, action) => {
                 ...state,
                 todos: [...state.todos, action.payload]
             };
-        case UPDATE_TODO:
+        case MARK_TODO:
             return {
                 ...state,
                 todos: state.todos.map(todo => {
@@ -15,7 +15,12 @@ export default (state, action) => {
                         ? {
                               ...todo,
                               isCompleted: !todo.isCompleted,
-                              priority: 0
+                              priority: !todo.isCompleted
+                                  ? 0
+                                  : todo.currentPriority,
+                              currentPriority: !todo.isCompleted
+                                  ? todo.priority
+                                  : null
                           }
                         : todo;
                 })
@@ -31,6 +36,11 @@ export default (state, action) => {
                           }
                         : todo;
                 })
+            };
+        case DELETE_TODO:
+            return {
+                ...state,
+                todos: state.todos.filter(todo => todo.id !== action.payload)
             };
         default:
             return state;

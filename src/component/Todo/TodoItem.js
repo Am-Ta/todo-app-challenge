@@ -4,13 +4,16 @@ import TodoContext from "../../context/Todo/todoContext";
 
 const TodoItem = ({ todo }) => {
     const todoContext = useContext(TodoContext);
-    const { updateTodo, pinTodo } = todoContext;
+    const { markTodo, pinTodo, deleteTodo } = todoContext;
 
     // Handle the Changes for checkbox
-    const handleChange = () => updateTodo(todo.id);
+    const handleChange = () => markTodo(todo.id);
 
     // Handle Click for the higest priority
-    const handleClick = () => !todo.isCompleted && pinTodo(todo.id);
+    const pinClick = () => !todo.isCompleted && pinTodo(todo.id);
+
+    // Handle click to delete the todo
+    const deleteClick = () => deleteTodo(todo.id);
 
     // get todo class
     const getTodoClass = () => {
@@ -28,6 +31,11 @@ const TodoItem = ({ todo }) => {
         }
     };
 
+    // To style the title of the todo item
+    const todoTitleStyle = {
+        textDecoration: todo.isCompleted ? "line-through" : "none"
+    };
+
     return (
         <div className={getTodoClass()}>
             <input
@@ -37,9 +45,16 @@ const TodoItem = ({ todo }) => {
                 onChange={handleChange}
             />
 
-            <h3 className='todo__title'>{todo.title}</h3>
-            <a href='#' onClick={handleClick} className='text-link'>
+            <p className='todo__title' style={todoTitleStyle}>
+                {todo.title}
+            </p>
+
+            <a href='#' onClick={pinClick} className='text-link'>
                 <i className='fas fa-thumbtack'></i>
+            </a>
+
+            <a href='#' onClick={deleteClick} className='text-link'>
+                <i className='fas fa-trash-alt'></i>
             </a>
         </div>
     );

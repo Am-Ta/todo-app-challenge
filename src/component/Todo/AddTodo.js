@@ -50,7 +50,7 @@ const AddTodo = () => {
 
                 <div className='form__item'>
                     <button type='submit' className='btn btn_primary'>
-                        Add Todo
+                        <i className='fas fa-check'></i> Add Todo
                     </button>
                 </div>
             </form>

@@ -11,7 +11,7 @@ const Todos = () => {
     todos = todos.sort((a, b) => (a.priority < b.priority ? 1 : -1));
 
     if (todos.length === 0) {
-        return <p>Please enter a todo...</p>;
+        return <p className='text'>Please enter a todo...</p>;
     }
 
     return (

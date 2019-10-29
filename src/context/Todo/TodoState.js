@@ -3,7 +3,7 @@ import TodoContext from "./todoContext";
 import TodoReducer from "./todoReducer";
 import uuid from "uuid";
 
-import { ADD_TODO, UPDATE_TODO, PIN_TODO } from "../types";
+import { ADD_TODO, MARK_TODO, PIN_TODO, DELETE_TODO } from "../types";
 
 const TodoState = props => {
     const initialState = {
@@ -18,20 +18,13 @@ const TodoState = props => {
             id: uuid.v4(),
             title: todo.title,
             isCompleted: false,
-            priority: getPriority(todo.priority)
+            priority: getPriority(todo.priority),
+            currentPriority: null
         };
 
         dispatch({
             type: ADD_TODO,
             payload: newTodo
-        });
-    };
-
-    // Update todo to complete
-    const updateTodo = id => {
-        dispatch({
-            type: UPDATE_TODO,
-            payload: id
         });
     };
 
@@ -47,6 +40,14 @@ const TodoState = props => {
         }
     };
 
+    // To mark todo to complete
+    const markTodo = id => {
+        dispatch({
+            type: MARK_TODO,
+            payload: id
+        });
+    };
+
     // To pin the todo
     const pinTodo = id => {
         dispatch({
@@ -54,13 +55,23 @@ const TodoState = props => {
             payload: id
         });
     };
+
+    // To delete the todo
+    const deleteTodo = id => {
+        dispatch({
+            type: DELETE_TODO,
+            payload: id
+        });
+    };
+
     return (
         <TodoContext.Provider
             value={{
                 todos: state.todos,
                 addTodo,
-                updateTodo,
-                pinTodo
+                markTodo,
+                pinTodo,
+                deleteTodo
             }}
         >
             {props.children}
