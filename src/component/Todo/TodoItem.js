@@ -19,15 +19,15 @@ const TodoItem = ({ todo }) => {
     const getTodoClass = () => {
         switch (todo.priority) {
             case 0:
-                return "todo todo_complete";
+                return "todo_complete";
             case 1:
-                return "todo todo_little";
+                return "todo_little";
             case 2:
-                return "todo todo_medium";
+                return "todo_medium";
             case 3:
-                return "todo todo_high";
+                return "todo_high";
             case 4:
-                return "todo todo_pin";
+                return "todo_pin";
         }
     };
 
@@ -37,7 +37,7 @@ const TodoItem = ({ todo }) => {
     };
 
     return (
-        <div className={getTodoClass()}>
+        <div className={`todo ${getTodoClass()}`}>
             <input
                 type='checkbox'
                 checked={todo.isCompleted}
